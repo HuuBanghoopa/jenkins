@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/HuuBanghoopa/jenkins.git'
+                git branch: 'main', credentialsId: 'github-creds', url: 'https://github.com/HuuBanghoopa/jenkins.git'
             }
         }
         
