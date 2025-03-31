@@ -12,22 +12,22 @@ pipeline {
             steps {
                 script {
                     def dotnetHome = tool name: 'dotnet-core', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-                    env.PATH = "${dotnetHome}:${env.PATH}"
+                    env.PATH = "${dotnetHome}\\bin;${env.PATH}"
                 }
-                bat 'dotnet restore'
-                bat 'dotnet build --configuration Release'
+                powershell 'dotnet restore'
+                powershell 'dotnet build --configuration Release'
             }
         }
         
         stage('Test') {
             steps {
-                bat 'dotnet test'
+                powershell 'dotnet test'
             }
         }
         
         stage('Publish') {
             steps {
-                bat 'dotnet publish -c Release -o published'
+                powershell 'dotnet publish -c Release -o published'
             }
         }
         
@@ -37,4 +37,5 @@ pipeline {
             }
         }
     }
+}
 }
