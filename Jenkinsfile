@@ -23,6 +23,9 @@ pipeline {
             steps {
                 powershell 'dotnet test'
             }
+            steps {
+                bat '"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Write-Host Hello Jenkins"'
+            }
         }
         
         stage('Publish') {
